@@ -1,6 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This program creates density profiles for the ideal Fermi gas at finite
-% temperature along the axial direction of the hybrid trap.
+% temperature along the axial direction of the hybrid trap. For checking 
+% purposesVarious EOS quantities are calculated as function of the axial
+% direction.
 % In addition gaussian white noise can be added to the simluated data.
 % Input parmeters are listed direclty below.
 
@@ -59,6 +61,14 @@ plot(y_vec_micron,n_simulated)
 xlabel('\mu m')
 ylabel('density [1/m^3]')
 
+%% PTilde as a function of y_vec
+PTilde = 10*pi/(6*pi^2)^(2/3) * ...
+    (-PolyLogFrac(5/2,-Z_simulated)./(-PolyLogFrac(3/2,-Z_simulated)).^(5/3));
+
+%% KappaTilde as a function y_vec 
+KappaTilde = (6*pi^2)^(2/3)/(6*pi) * ...
+    (-PolyLogFrac(1/2,-Z_simulated)./(-PolyLogFrac(3/2,-Z_simulated)).^(1/3));
+
 %% add gaussian noise on density distribution
 n_simulated_noise = awgn(n_simulated,25,'measured');
 
@@ -67,4 +77,5 @@ plot(y_vec_micron,n_simulated_noise)
 xlabel('\mu m')
 ylabel('density [1/m^3]')
 
-save('polarized_simulated_T0_1_noise_hires.mat','n_simulated','y_vec','n_simulated_noise')
+save('polarized_simulated_T0_1_noise_hires.mat','n_simulated','y_vec',...
+    'n_simulated_noise','PTilde','KappaTilde')
