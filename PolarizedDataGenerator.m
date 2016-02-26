@@ -54,7 +54,7 @@ mu_simulated = mu0 - 1/2 * mLi * omega_y^2 * (y_vec).^2;
 Z_simulated = exp(mu_simulated/(kB*TAbsolut));
 
 %% simulated density distribution
-n_simulated = (mLi*kB*TAbsolut/(2*pi*hbar^2))^(3/2)*(-PolyLogFrac(3/2,-Z_simulated)).^(2/3);
+n_simulated = (mLi*kB*TAbsolut/(2*pi*hbar^2))^(3/2)*(-PolyLogFrac(3/2,-Z_simulated));
 
 figure(1)
 plot(y_vec_micron,n_simulated)
